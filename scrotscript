@@ -5,11 +5,10 @@ if [ -z $1 ]; then
 
 	#saves screenshot of entire screen to ~/Pictures/screencap with (Unix Timestamp)-full as the filename
 	scrot ~/Pictures/screencap/%s-full.png
-
+	
 	#most recently modified file (screenshot we just made)
 	lastSaved=$(ls ~/Pictures/screencap -t | head -n1)
-	
-	#sends a notification
+	#sends a notification		
 	notify-send 'Full screencap taken' 'Copied to clipboard and file saved to ~/Pictures/screencap/'${lastSaved}'.'
 
 	#copies the image to clipboard (comment this out if you don't want that)
@@ -18,9 +17,13 @@ if [ -z $1 ]; then
 #-r for region	
 elif [ $1 = "-r" ]; then
 	scrot -s -f ~/Pictures/screencap/%s-region.png
-	lastSaved=$(ls ~/Pictures/screencap -t | head -n1)
-	notify-send 'Region screencap taken' 'Copied to clipboard and file saved to ~/Pictures/screencap/'${lastSaved}'.'
-	xclip -selection clipboard -target image/png -i ~/Pictures/screencap/$lastSaved
+	if [ $? -eq 0 ]; then
+		lastSaved=$(ls ~/Pictures/screencap -t | head -n1)
+		notify-send 'Region screencap taken' 'Copied to clipboard and file saved to ~/Pictures/screencap/'${lastSaved}'.'
+		xclip -selection clipboard -target image/png -i ~/Pictures/screencap/$lastSaved
+	else
+		notify-send 'Screencap cancelled.'
+	fi
 
 #-a for active window	
 elif [ $1 = "-a" ]; then
