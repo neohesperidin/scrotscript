@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#make screencap folder if it doesn't exist
+mkdir -p ~/Pictures/screencap
 #if no argument is passed
 if [ -z $1 ]; then
 
