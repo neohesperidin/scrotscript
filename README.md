@@ -1,9 +1,9 @@
 # scrotscript
 a little script i made to take screenshots how i want them to be taken:
-- save image named with unix timestamp (not 4chan moment it's just good for sorting)
+- save image named with unix timestamp
 - copy image to clipboard
 
-by default outputs to ~/Pictures/screencap (it doesn't create this directory)
+by default outputs to ~/Pictures/screencap
 
 intended to be bound with your hotkey manager
 
